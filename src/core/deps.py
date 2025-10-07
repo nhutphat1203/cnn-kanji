@@ -1,8 +1,6 @@
 from models.cnn_kanji_model import ImageModel
 
-PATH = ''
-
-cnn_kanji_model = ImageModel(PATH)
+cnn_kanji_model = ImageModel()
 
 
 def get_reg_kanji_model():

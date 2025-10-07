@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nhận dạng chữ Kanji</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Vùng bên trái: Canvas -->
+    <div class="canvas-section">
+      <h2>🖌️ Bảng vẽ</h2>
+      <form id="canvasForm">
+        <canvas id="demoCanvas" width="400" height="400"></canvas>
+
+        <div class="input-group">
+          <input type="text" id="charInput" placeholder="Nhập ký tự (tuỳ chọn)">
+          <button type="button" class="btn-clear" onclick="clearCanvas()">Xóa</button>
+          <button type="submit" id="submitBtn" disabled>Đoán</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Vùng bên phải: Kết quả -->
+    <div class="result-section">
+      <h2>📊 Kết quả dự đoán</h2>
+      <div id="resultBox" class="result-box">
+        <p>Vẽ ký tự và bấm <b>Đoán</b> để xem kết quả.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/canvas.js"></script>
+</body>
+</html>
