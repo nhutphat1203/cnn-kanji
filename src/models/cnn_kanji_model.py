@@ -13,8 +13,8 @@ from fastapi import UploadFile
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Đường dẫn đến các file model và label
-PATH_MODEL = os.path.join(CURRENT_DIR, 'model', 'kanji_100_best.h5')
-PATH_LABEL = os.path.join(CURRENT_DIR, 'model', 'label.json')
+PATH_MODEL = os.path.join(CURRENT_DIR, 'model', 'kanji_3036_best_e4.h5')
+PATH_LABEL = os.path.join(CURRENT_DIR, 'model', 'label_3036.json')
 PATH_COLLECTION = os.path.join(CURRENT_DIR, 'test')
 
 logger = setup_logger()
