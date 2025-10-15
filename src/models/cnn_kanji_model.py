@@ -89,3 +89,81 @@ class ImageModel:
         except Exception as e:
             logger.error(f"❌ Failed to save image: {e}")
             raise e
+
+
+class CNNKanjiModel:
+    """
+    CNN Kanji Model for base64 image prediction
+    Optimized for canvas drawing recognition
+    """
+    
+    def __init__(self, model_path: str, label_path: str):
+        """
+        Initialize CNN Kanji Model
+        
+        Args:
+            model_path: Path to .h5 model file
+            label_path: Path to label JSON file
+        """
+        self.model_path = model_path
+        self.label_path = label_path
+        
+        logger.info(f"Initializing CNNKanjiModel with model_path: {model_path}")
+        
+        # Load model
+        try:
+            self.model = tf.keras.models.load_model(model_path)
+            logger.info("✅ Model loaded successfully!")
+        except Exception as e:
+            logger.error(f"❌ Failed to load model: {e}")
+            raise e
+        
+        # Load labels
+        try:
+            with open(label_path, 'r', encoding='utf-8') as f:
+                self.labels = json.load(f)
+            logger.info(f"✅ Loaded {len(self.labels)} labels from {label_path}")
+        except Exception as e:
+            logger.error(f"❌ Failed to load labels: {e}")
+            raise e
+    
+    def predict(self, image: np.ndarray) -> dict:
+        """
+        Predict kanji character from preprocessed image
+        
+        Args:
+            image: Preprocessed numpy array (1, 64, 64, 3) or (1, 128, 128, 1)
+        
+        Returns:
+            Dictionary with prediction results
+        """
+        try:
+            # Make prediction
+            predictions = self.model.predict(image, verbose=0)
+            
+            # Get top prediction
+            top_idx = np.argmax(predictions[0])
+            top_confidence = float(predictions[0][top_idx])
+            top_character = self.labels[top_idx] if self.labels else str(top_idx)
+            
+            # Get top 5 predictions
+            top5_indices = np.argsort(predictions[0])[-5:][::-1]
+            top5 = [
+                {
+                    'character': self.labels[idx] if self.labels else str(idx),
+                    'confidence': float(predictions[0][idx])
+                }
+                for idx in top5_indices
+            ]
+            
+            logger.info(f"✅ Prediction: {top_character} (confidence: {top_confidence:.4f})")
+            
+            return {
+                'character': top_character,
+                'confidence': top_confidence,
+                'top5': top5
+            }
+            
+        except Exception as e:
+            logger.error(f"❌ Prediction error: {str(e)}")
+            raise
