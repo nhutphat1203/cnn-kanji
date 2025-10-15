@@ -60,6 +60,13 @@ Tại đây bạn có thể **vẽ trực tiếp chữ Kanji**, nhấn **Predict
 * Tối ưu tốc độ inference bằng TensorRT hoặc ONNX Runtime.
 * Bổ sung dashboard thống kê độ chính xác của mô hình.
 
+## 🖼️ Hình ảnh minh họa
+
+| 🧩 Canvas Demo 1 | 🧩 Canvas Demo 2 | 🧩 Canvas Demo 3 |
+|:----------------:|:----------------:|:----------------:|
+| ![Canvas 1](images/1.png) | ![Canvas 2](images/2.png) | ![Canvas 3](images/3.png) |
+
+
 ## 📦 Dữ liệu huấn luyện: ETL9B Dataset
 
 Dự án sử dụng **ETL9B**, một trong những bộ dữ liệu chữ viết tay tiếng Nhật do **ETL Character Database** (thuộc NTT Laboratories, Nhật Bản) phát hành.
