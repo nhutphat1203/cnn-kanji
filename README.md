@@ -1,5 +1,5 @@
 
-# 🈶 kanji-ml-server  
+# 🈶 cnn-kanji  
 **AI server for Kanji prediction model (CNN + FastAPI)**  
 
 Dự án này triển khai mô hình **CNN (Convolutional Neural Network)** để nhận dạng và dự đoán **chữ Hán (Kanji)**.  
